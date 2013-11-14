@@ -6,6 +6,11 @@ $DefaultNetstreamDriver gtls # use gtls netstream driver
 $ActionSendStreamDriverMode 1 # require TLS
 $ActionSendStreamDriverAuthMode x509/name # authenticate by hostname
 
+$ActionResumeRetryCount -1 # retry forever to log to papertrail
+$ActionQueueType LinkedList # use asynchronous processing
+$ActionQueueFileName /var/log/emergency_syslog # set file name, also enables disk mode
+$ActionQueueMaxFileSize 500M
+
 <%- if @fixhostname %>
 
 *.*   @@<%= @host %>:<%= @port %>;FixHostname
